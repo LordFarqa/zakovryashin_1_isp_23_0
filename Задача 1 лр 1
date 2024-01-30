@@ -1,0 +1,9 @@
+//Заковряшин
+alert("Программа для сложения двух чисел")
+let a = prompt("Введите переменную a")
+let b = prompt("Введите переменную b")
+a = parseFloat(a)
+b = parseFloat(b)
+c = a + b
+alert("Результат сложения")
+alert(c)
