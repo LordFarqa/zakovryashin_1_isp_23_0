@@ -3,11 +3,11 @@ def main():
         def __init__(self, color):
             self.color = color
 
-        def can_move(self,board,row, column, row1, column1):
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
         def get_color(self):
             return self.color
@@ -19,11 +19,11 @@ def main():
         def get_color(self):
             return self.color
 
-        def can_move(self,board,row, column, row1, column1):
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
     class Queen:
         def __init__(self, color):
@@ -32,11 +32,11 @@ def main():
         def get_color(self):
             return self.color
 
-        def can_move(self,board,row, column, row1, column1):
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
     class Bishop:
         def __init__(self, color):
@@ -44,11 +44,12 @@ def main():
 
         def get_color(self):
             return self.color
-        def can_move(self,board,row, column, row1, column1):
+
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
     class King:
         def __init__(self, color):
@@ -57,11 +58,11 @@ def main():
         def get_color(self):
             return self.color
 
-        def can_move(self,board,row, column, row1, column1):
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
     class Hourse:
         def __init__(self, color):
@@ -74,11 +75,11 @@ def main():
         def get_color(self):
             return self.color
 
-        def can_move(self,board,row, column, row1, column1):
+        def can_move(self, board, row, column, row1, column1):
             return True
 
-        def can_attack(self,board,row, column, row1, column1):
-            return self.can_move(self,row,column,row1,column1)
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
 
     class Chess_board:
         def __init__(self):
@@ -102,17 +103,25 @@ def main():
                 Rook('BLACK'), Hourse('BLACK'), Bishop('BLACK'), Queen('BLACK'),
                 King('BLACK'), Bishop('BLACK'), Hourse('BLACK'), Rook('BLACK')
             ]
-            def get_board_type(board_type):
-                b_type = input()
-                result = f'{b_type} Тип доски установлен'
-                return result
 
-            def can_move(self, board, row, column, row1, column1):
-                return True
+        def get_board_type(self):
+            b_type = input()
+            result = f'{b_type} Тип доски установлен'
+            return result
 
-            def can_attack(self, board, row, column, row1, column1):
-                return self.can_move(self, row, column, row1, column1)
+        def can_move(self, board, row, column, row1, column1):
+            return True
+
+        def can_attack(self, board, row, column, row1, column1):
+            return self.can_move(board, row, column, row1, column1)
+
+        def get_field(self):
+            return self.field
+
+    chess_board = Chess_board()
+    return chess_board.get_field()  # Вызовите метод get_field
 
 
 if __name__ == "__main__":
-    main()
+    for ches_field_row in main():
+        print(ches_field_row)
