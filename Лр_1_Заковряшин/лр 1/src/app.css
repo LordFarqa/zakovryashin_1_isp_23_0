@@ -1,0 +1,135 @@
+
+body {
+  background: #ffffff;
+  margin: 0;
+  padding: 20px;
+  font-family: 'Crimson Pro', serif;
+}
+
+.journal-card {
+  max-width: 90vw;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #e0d6c3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.journal-header {
+  padding: 1.5rem 2rem 0;
+  border-bottom: 2px solid #e0d6c3;
+}
+
+.date-line {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  color: black;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  color: black;
+  margin: 0 0 1rem;
+  font-size: 2.2rem;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #e0d6c3 50%, transparent 100%);
+  margin: 1rem 0;
+}
+
+.panels {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+
+}
+
+.editor-section {
+  flex: 1;
+  position: relative;
+}
+
+.section-label {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  color: black;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.journal-input, .journal-output {
+  width: 100%;
+  min-height: 60vh;
+  border: none;
+  background: #fbfcfe;
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #747675;
+  resize: none;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.journal-input:focus {
+  outline: none;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.08);
+}
+
+.journal-output {
+  background: #faeef8;
+  color: #93789a;
+}
+
+.journal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background: #e0d6c3;
+}
+@media (max-width: 768px) {
+  .panels {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .journal-input, .journal-output {
+    min-height: 45vh;
+    font-size: 1rem;
+  }
+  
+  .divider.vertical {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .journal-card {
+    margin: 1rem auto;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .journal-input, .journal-output {
+    min-height: 40vh;
+    padding: 1rem;
+  }
+}

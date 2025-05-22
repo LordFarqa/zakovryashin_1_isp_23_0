@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROT 13</title>
+  <link rel="stylesheet" href="./src/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Playfair+Display:wght@500&display=swap"
+  rel="stylesheet">
+</head>
+<body>
+  <div class="journal-card">
+    <header class="journal-header">
+      <div class="date-line">JOURNAL NOTE 11-9-2001</div>
+    </header>
+    <div class="panels">
+      <div class="editor-section">
+        <label class="section-label">Text</label>
+        <textarea id="inputText" class="journal-input" placeholder="Input"></textarea>
+      </div>
+      <div class="editor-section">
+        <label class="section-label">Output</label>
+        <textarea id="outputText" class="journal-output" readonly placeholder="Result"></textarea>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
