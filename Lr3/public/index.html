@@ -2,13 +2,45 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Каталог товаров</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Каталог мебели</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    #products { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .card { border: 1px solid #ccc; padding: 10px; text-align: center; }
+  </style>
 </head>
 <body>
-  <h1>Каталог товаров</h1>
-  <input id="searchInput" type="text" placeholder="Поиск по названию или категории…">
-  <div id="productsContainer" class="products-grid"></div>
-  <script src="/js/script.js"></script>
+  <h1>Каталог мебели</h1>
+  <input id="search" placeholder="Поиск..." />
+  <div id="products"></div>
+
+  <script>
+    let all = [];
+    fetch('/api/products')
+      .then(r=>r.json())
+      .then(d=>{
+        all = d.products;
+        render(all);
+      });
+
+    document.getElementById('search').addEventListener('input', e => {
+      const term = e.target.value.toLowerCase();
+      render(all.filter(p=>
+        p.title.toLowerCase().includes(term) ||
+        p.category.toLowerCase().includes(term)
+      ));
+    });
+
+    function render(arr) {
+      document.getElementById('products').innerHTML = arr.map(p=>`
+        <div class="card">
+          <img src="${p.thumbnail}" style="max-width:100%">
+          <h3>${p.title}</h3>
+          <div>Категория: ${p.category}</div>
+          <div>Цена: $${p.price}</div>
+        </div>
+      `).join('');
+    }
+  </script>
 </body>
 </html>
