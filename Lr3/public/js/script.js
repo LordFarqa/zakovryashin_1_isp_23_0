@@ -1,53 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const container   = document.getElementById('productsContainer');
-  const searchInput = document.getElementById('searchInput');
-  if (document.getElementById('productDetail')) {
-    renderProductDetail();
-  } else {
-    fetch('/api/products')
-      .then(r => r.json())
-      .then(data => {
-        window.allProducts = data.products;
-        renderProducts(data.products);
+  let allProducts = [];
+  let searchInput = document.getElementById('searchInput') || document.getElementById('search');
+  let container   = document.getElementById('products')   || document.getElementById('productsContainer');
+  fetch('/api/products')
+    .then(res => res.json())
+    .then(data => {
+      allProducts = data.products || data;
+      renderProducts(allProducts);
+    })
+    .catch(console.error);
+  searchInput.addEventListener('input', (e) => {
+    let term = e.target.value.toLowerCase();
+    let filtered = allProducts.filter(p =>
+      p.title.toLowerCase().includes(term) ||
+      p.category.toLowerCase().includes(term)
+    );
+    renderProducts(filtered);
+  });
 
-        searchInput.addEventListener('input', e => {
-          const term = e.target.value.toLowerCase();
-          const filtered = window.allProducts.filter(p =>
-            p.title.toLowerCase().includes(term) ||
-            p.category.toLowerCase().includes(term)
-          );
-          renderProducts(filtered);
-        });
-      });
-  }
-
-  function renderProducts(arr) {
-    container.innerHTML = arr.map(p => `
-      <div class="product-card">
-        <a href="/product.html?id=${p.id}">
-          <img src="${p.thumbnail}" alt="${p.title}">
-          <h3>${p.title}</h3>
-          <p>Категория: ${p.category}</p>
-          <p>Цена: $${p.price}</p>
-        </a>
-      </div>
-    `).join('');
-  }
-
-  function renderProductDetail() {
-    const params = new URLSearchParams(location.search);
-    const id     = params.get('id');
-    const out    = document.getElementById('productDetail');
-    fetch(`/api/products/${id}`)
-      .then(r => r.json())
-      .then(p => {
-        out.innerHTML = `
-          <h2>${p.title}</h2>
-          <img src="${p.images?.[0] || p.thumbnail}" style="max-width:300px">
-          <p>Категория: ${p.category}</p>
-          <p>Цена: $${p.price}</p>
-          <p>${p.description}</p>
-        `;
-      });
+  function renderProducts(products) {
+    container.innerHTML = products.map(product => {
+      return `
+        <div class="card" data-id="${product.id}">
+          <img src="${product.thumbnail}" alt="${product.title}">
+          <h3>${product.title}</h3>
+          <p>Категория: ${product.category}</p>
+          <p>Цена: $${product.price}</p>
+        </div>
+      `;
+    }).join('');
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.onclick = () => {
+        let id = card.getAttribute('data-id');
+        window.location.href = `/product.html?id=${id}`;
+      };
+    });
   }
 });
