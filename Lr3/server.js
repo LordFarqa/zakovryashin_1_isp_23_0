@@ -1,16 +1,14 @@
-// Lr3/server.js
-const express = require('express');
-const path    = require('path');
-const axios   = require('axios');
+let express = require('express');
+let path    = require('path');
+let axios   = require('axios');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+let app = express();
+let PORT = process.env.PORT || 3000;
 
-const PUBLIC_DIR = path.join(__dirname, 'public');
-
+let PUBLIC_DIR = path.join(__dirname, 'public');
 app.get('/api/products', async (req, res) => {
   try {
-    const { data } = await axios.get('https://dummyjson.com/products');
+    let { data } = await axios.get('https://dummyjson.com/products');
     res.json(data);
   } catch (e) {
     console.error(e);
@@ -20,21 +18,18 @@ app.get('/api/products', async (req, res) => {
 
 app.get('/api/products/:id', async (req, res) => {
   try {
-    const { id } = req.params;
-    const { data } = await axios.get(`https://dummyjson.com/products/${id}`);
+    let { id } = req.params;
+    let { data } = await axios.get(`https://dummyjson.com/products/${id}`);
     res.json(data);
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Cannot fetch product' });
   }
 });
-
 app.use(express.static(PUBLIC_DIR, { index: false }));
-
 app.get('/', (req, res) =>
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'))
 );
-
 app.use((req, res) => {
   res.status(404).send(`
     <h1>404 — Не найдено</h1>

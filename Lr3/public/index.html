@@ -3,19 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <title>Каталог мебели</title>
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    #products { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .card { border: 1px solid #ccc; padding: 10px; text-align: center; }
-  </style>
+  <link rel="stylesheet" href="./сss/catalog.css">
 </head>
 <body>
-  <h1>Каталог мебели</h1>
-  <input id="search" placeholder="Поиск..." />
-  <div id="products"></div>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-left-group">
+        <aside class="filters-container">
+          <button id="filters-button" class="filters-button">Filter</button>
+          <div class="filters-dropdown" id="filters-dropdown"></div>
+        </aside>
+        <div class="showing-results">Showing 47 result</div>
+      </div>
+      
+      <div class="header-controls">
+        <div class="sort_by">Sort by</div>
+        <div class="search-container">
+          <input id="search" class="search" type="text" placeholder="Sort product name">
+          <div id="search-history" class="search-history"></div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <script src="./js/script.js">
+  <div id="active-filters" class="active-filters"></div>
 
-  </script>
+  <main class="products-grid" id="products"></main>
+
+  <nav class="pagination" id="pagination"></nav>
+
+  <script src="./js/script.js"></script>
 </body>
 </html>
