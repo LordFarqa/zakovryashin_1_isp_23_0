@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Каталог мебели</title>
+  <link rel="stylesheet" href="./сss/catalog.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-left-group">
+        <aside class="filters-container">
+          <button id="filters-button" class="filters-button">Filter</button>
+          <div class="filters-dropdown" id="filters-dropdown"></div>
+        </aside>
+        <div class="showing-results">Showing 47 result</div>
+      </div>
+      
+      <div class="header-controls">
+        <div class="sort_by">Sort by</div>
+        <div class="search-container">
+          <input id="search" class="search" type="text" placeholder="Sort product name">
+          <div id="search-history" class="search-history"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="active-filters" class="active-filters"></div>
+
+  <main class="products-grid" id="products"></main>
+
+  <nav class="pagination" id="pagination"></nav>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
